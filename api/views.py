@@ -602,6 +602,13 @@ class ProteinAlignment(views.APIView):
 
                 ali_dict["statistics"] = feat
 
+                generic_numbers = []
+                for ns, segments in a.generic_numbers.items():
+                    for s, num in segments.items():
+                        for n, dn in num.items():
+                            generic_numbers.append(dn)
+                ali_dict["generic_number"] = generic_numbers
+
             return Response(ali_dict)
 
 class ProteinAlignmentStatistics(ProteinAlignment):
